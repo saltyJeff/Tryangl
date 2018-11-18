@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link href='https://fonts.googleapis.com/css?family=Josefin Sans' rel='stylesheet'>
+	<title>tryangl</title>
+	<link rel="shortcut icon" type="image/x-icon" href="logo.ico" />
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="manifest" href="manifest.json">
+	<style>
+		html, body {
+			width: 100%;
+			height: auto;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+			background: url("back2.jpg") no-repeat center center fixed;
+			background-size: cover;
+			background-repeat: no-repeat;
+			margin: 0px;
+			padding: 0px;
+		}
+		 button {
+			font-family: 'Josefin Sans';
+			font-style: bold;
+			color: white;
+			font-size: 15px;
+			border-radius: 10px;
+			border-width: 0px;
+			padding-top: 15px;
+			padding-bottom: 10px;
+			padding-left: 20px;
+			padding-right: 20px;
+			background-color: #C71585;
+			text-transform: uppercase;
+			align-self: center;
+		}
+		h1 {
+			font-family: 'Josefin Sans';
+			color:#C71585 ;
+		}
+
+		input {
+			border-radius: 10px;
+			color: #C71585;
+			padding-top: 5px;
+			text-align: center;
+			font-family: 'Josefin Sans';
+		}
+		.w3-card 
+		{
+			background-color: white;
+			border-radius: 10px;
+			padding:5px 20px 20px 20px; 
+			align-items: center;
+			font-style: bold;
+			font-family: 'Josefin Sans';
+		}
+
+		p {
+				font-family: 'Josefin Sans';
+				font-weight: 700;
+				font-size: 20px;
+				margin-bottom: -3px;
+		}
+
+		ol{
+			font-family: 'Josefin Sans';
+		}
+
+		body > div {
+			width: 80vw;
+			overflow: overflow;
+		}
+		#pagingRow {
+			display: flex; 
+			flex-direction: row; 
+			align-items: center;
+		}
+		#pagingRow > button {
+			margin-left: 10px;
+		}
+		@media only screen and (max-width: 600px) {
+    		#pagingRow {
+				flex-direction: column;
+    		}
+			#pagingRow > button {
+				margin-bottom: 10px;
+				margin-left: 0;
+			}
+		}
+		#userEvents > li {
+			padding: 5px;
+			border: 1px solid black;
+		}
+		#userEvents > li:hover {
+			background-color: lightslategrey;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="startPage" style="text-align: center; margin-bottom: 20px;">
+		<img src="logo.png" width=150 style="margin-bottom: 30px" /> <br>
+		<input type="text" id="userId" placeholder="Enter your ID" style="margin-bottom: 30px;" />
+		<div id="pagingRow">
+			<span style="flex: 1"></span>
+			<button id="openExplore" onclick="openPage('explorePage')">Explore</button>
+			<button id="createEvt" onclick="openPage('optionsPage')">Create an Event</button>
+			<button id="viewProfile" onclick="openPage('profilePage')">View Profile</button>
+			<span style="flex: 1"></span>
+		</div>
+	</div>
+	<div id="explorePage" hidden>
+		<div class="w3-card" style="text-align: center;">
+			<input type="text" placeholder="Category" id="exploreCategory" />
+			<button id="searchForEvts" onclick="loadExploreData(document.getElementById('exploreCategory').value);addPage('evtList')">Search
+				for Events</button>
+		</div>
+		<div class="w3-card" id="evtList" hidden> </div>
+	</div>
+	<div id="optionsPage" hidden>
+		<div class="w3-card">
+			<p>Select a Category</p>
+			<select id="createCategory">
+				<option value="Outdoors">Outdoors</option>
+				<option value="Food">Food</option>
+				<option value="Music">Music</option>
+				<option value="Coding">Coding</option>
+			</select>
+			<p>Describe your event</p>
+			<input type="text" placeholder="Event details here..." id="createEventDescription" /><br>
+			<p>How many people do you want to attend?</p>
+			<input type="number" id="createMaxMember" min="3" max="10" /><br>
+			<div style="text-align: center">
+				<button id="createEventButton" onclick="mkEvent()">Create Event</button>
+			</div>
+		</div>
+	</div>
+	<div id="profilePage" hidden>
+		<div class="w3-card">
+			<h1>Your Events</h1>
+			<ol id="userEvents">
+			</ol>
+			<h2 id="userPoints"></h2>
+		</div>
+		<div class="w3-card" hidden id="eventDeets">
+			<h1>Event Details</h1>
+			<h2 id="devtName">EVENT NAME</h2>
+			<p id="dcreatorId">CREATOR_ID</p>
+			<ol id="dmembers">
+			</ol>
+			<p id="dspotsAvailable">AVAILABLE</p>
+			<input type="file" id="userPhoto" name="image_upload" accept="image/png, image/jpeg, image/jpg" />
+			<button id="verifyButton">Verify</button>
+		</div>
+	</div>
+
+	<template id="exploreTempl">
+		<h1 id="evtName">EVENT NAME</h1>
+		<p id="creatorId">CREATOR_ID</p>
+		<ol id="members">
+		</ol>
+		<p id="spotsAvailable">AVAILABLE</p>
+		<button id="joinButton">Join</button>
+	</template>
+	<script type="text/javascript" src="./tryangl.js"></script>
+	<script type="text/javascript" src="./main.js"></script>
+</body>
+
+</html>

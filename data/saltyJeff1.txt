@@ -1,0 +1,1 @@
+{"points":2500,"events":["Outdoors/3345f0fd-591d-4551-82cf-f633e97eb56b","Outdoors/d465a3ff-9f3a-49cc-bc43-7e47e07706f8"]}
